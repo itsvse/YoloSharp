@@ -116,7 +116,7 @@ public class YoloMetadata
             var id = int.Parse(valueSplit[0]);
             var name = valueSplit[1][1..^1].Replace('_', ' ');
 
-            names[i] = new YoloName(id, name);
+            names[id] = new YoloName(id, name);
         }
 
         return names;
