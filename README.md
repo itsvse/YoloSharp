@@ -111,6 +111,13 @@ predictor.PredictAndSaveAsync("path/to/image");
 
 ![seg-demo!](https://raw.githubusercontent.com/dme-compunet/YoloSharp/main/Assets/seg-demo.jpg)
 
+# Not Supported:
+
+The following features are not currently supported, they may be added later
+
+- **Batch Processing:** You have to predict them one by one
+- **Dynamic Size:** The image resized according to `imgsz`
+
 # License
 
 AGPL-3.0 License
