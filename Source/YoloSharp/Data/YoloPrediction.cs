@@ -8,6 +8,6 @@ public abstract class YoloPrediction
 
     public override string ToString()
     {
-        return $"{Name.Name} ({Confidence:N})";
+        return $"{Name.Name} ({(int)(Confidence * 100f)}%)";
     }
 }
