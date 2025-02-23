@@ -2,6 +2,9 @@
 
 public enum YoloArchitecture
 {
-    YoloV8Or11,
+    /// <summary>
+    /// YOLOv8, YOLO11, YOLOv12
+    /// </summary>
+    Ultralytics,
     YoloV10
 }
