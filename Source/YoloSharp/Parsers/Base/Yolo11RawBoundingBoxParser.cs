@@ -58,7 +58,8 @@ internal class Yolo11RawBoundingBoxParser(YoloMetadata metadata,
         var w = tensor[2 * boxStride + boxIndex];
         var h = tensor[3 * boxStride + boxIndex];
 
-        angle = float.NegativeZero;
         bounds = new RectangleF(x - w / 2, y - h / 2, w, h);
+
+        angle = float.NegativeZero;
     }
 }

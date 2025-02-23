@@ -81,7 +81,7 @@ public class YoloMetadata
             }
         }
 
-        return YoloArchitecture.YoloV8Or11;
+        return YoloArchitecture.Ultralytics;
     }
 
     #region Parsers
