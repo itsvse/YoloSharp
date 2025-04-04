@@ -9,7 +9,9 @@ internal class NameDrawer : INameDrawer
         var font = context.TextOptions.Font;
         
         if (font.Size <= 0)
+        {
             return;
+        }
         
         var xPadding = context.NamePadding.X;
         var yPadding = context.NamePadding.Y;

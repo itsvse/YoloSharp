@@ -14,7 +14,9 @@ internal class BoxDrawer : IBoxDrawer
     public void DrawBox(Detection prediction, PointF[] points, PlottingContext context)
     {
         if (context.BorderThickness <= 0)
+        {
             return;
+        }
         
         var polygon = new Polygon(points);
         var color = context.ColorPalette.GetColor(prediction.Name.Id);
