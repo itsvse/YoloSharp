@@ -13,20 +13,18 @@ public class YoloPredictor : IDisposable
 
     #region Constractor
 
-    public YoloPredictor(string path) : this(File.ReadAllBytes(path), YoloPredictorOptions.Default) { }
+    public YoloPredictor(string path) : this(path, YoloPredictorOptions.Default) { }
 
     public YoloPredictor(byte[] model) : this(model, YoloPredictorOptions.Default) { }
 
-    public YoloPredictor(string path, YoloPredictorOptions options) : this(File.ReadAllBytes(path), options) { }
+    public YoloPredictor(string path, YoloPredictorOptions options) : this(options.CreateSession(path), options) { }
+    
+    public YoloPredictor(byte[] model, YoloPredictorOptions options) : this(options.CreateSession(model), options) { }
 
-    public YoloPredictor(byte[] model, YoloPredictorOptions options)
+    private YoloPredictor(InferenceSession session, YoloPredictorOptions options)
     {
-        // Create onnx runtime inference session
-        _session = options.CreateSession(model);
-
-        // Create predictor services resolver
+        _session = session;
         _resolver = new PredictorServiceResolver(_session, options.Configuration ?? YoloConfiguration.Default);
-
         Metadata = _resolver.Resolve<YoloMetadata>();
         Configuration = _resolver.Resolve<YoloConfiguration>();
     }
