@@ -15,7 +15,31 @@ public class YoloPredictorOptions
 
     public YoloConfiguration? Configuration { get; init; }
 
+    internal InferenceSession CreateSession(string path)
+    {
+        var sessionOptions = GetSessionOptions();
+        
+        if (sessionOptions != null)
+        {
+            return new InferenceSession(path, SessionOptions);
+        }
+
+        return new InferenceSession(path);
+    }
+
     internal InferenceSession CreateSession(byte[] model)
+    {
+        var sessionOptions = GetSessionOptions();
+
+        if (sessionOptions != null)
+        {
+            return new InferenceSession(model, SessionOptions);
+        }
+
+        return new InferenceSession(model);
+    }
+
+    private SessionOptions? GetSessionOptions()
     {
         if (UseCuda)
         {
@@ -24,14 +48,9 @@ public class YoloPredictorOptions
                 throw new InvalidOperationException("'UseCuda' and 'SessionOptions' cannot be used together");
             }
 
-            return new InferenceSession(model, SessionOptions.MakeSessionOptionWithCudaProvider(CudaDeviceId));
+            return SessionOptions.MakeSessionOptionWithCudaProvider(CudaDeviceId);
         }
 
-        if (SessionOptions != null)
-        {
-            return new InferenceSession(model, SessionOptions);
-        }
-
-        return new InferenceSession(model);
+        return SessionOptions;
     }
 }
