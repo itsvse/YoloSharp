@@ -1,6 +1,6 @@
 # YoloSharp
 
-🚀 A High Performance real-time object detection solution using [YOLO11](https://github.com/ultralytics/ultralytics) ⚡️ powered by ONNX-Runtime
+🚀 A high performance real-time object detection solution using [YOLO11](https://github.com/ultralytics/ultralytics) ⚡️ powered by ONNX-Runtime
 
 # Features
 
