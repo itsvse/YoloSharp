@@ -88,18 +88,30 @@ internal class SegmentationParser(YoloMetadata metadata,
         {
             for (var x = 0; x < target.Width; x++)
             {
+                // Calculate source coordinates
                 var sourceX = (float)(x + position.X) * (source.Width - 1) / (size.Width - 1);
                 var sourceY = (float)(y + position.Y) * (source.Height - 1) / (size.Height - 1);
 
-                var x0 = (int)sourceX;
-                var y0 = (int)sourceY;
+                // Check if source coordinates are out of bounds
+                if (sourceY < 0 || sourceY >= source.Height ||
+                    sourceX < 0 || sourceX >= source.Width)
+                {
+                    target[y, x] = 0f;
+                    continue;
+                }
 
-                var x1 = Math.Min(x0 + 1, source.Width - 1);
-                var y1 = Math.Min(y0 + 1, source.Height - 1);
+                // Ensure coordinates are within valid range for interpolation
+                var x0 = Math.Max(0, Math.Min((int)sourceX, source.Width - 2));
+                var y0 = Math.Max(0, Math.Min((int)sourceY, source.Height - 2));
 
+                var x1 = x0 + 1;
+                var y1 = y0 + 1;
+
+                // Calculate interpolation factors
                 var xLerp = sourceX - x0;
                 var yLerp = sourceY - y0;
 
+                // Perform bilinear interpolation
                 var top = Lerp(source[y0, x0], source[y0, x1], xLerp);
                 var bottom = Lerp(source[y1, x0], source[y1, x1], xLerp);
 
