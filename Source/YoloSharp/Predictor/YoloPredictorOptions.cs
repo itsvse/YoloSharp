@@ -21,7 +21,7 @@ public class YoloPredictorOptions
         
         if (sessionOptions != null)
         {
-            return new InferenceSession(path, SessionOptions);
+            return new InferenceSession(path, sessionOptions);
         }
 
         return new InferenceSession(path);
@@ -33,7 +33,7 @@ public class YoloPredictorOptions
 
         if (sessionOptions != null)
         {
-            return new InferenceSession(model, SessionOptions);
+            return new InferenceSession(model, sessionOptions);
         }
 
         return new InferenceSession(model);
