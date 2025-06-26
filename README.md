@@ -99,17 +99,12 @@ predictor.PredictAndSaveAsync("path/to/image");
 
 ## Example Images:
 
-#### Detection:
+|         **Detect**         |        **Pose**        |
+| :------------------------: | :--------------------: |
+| ![detect](/img/detect.png) | ![pose](/img/pose.png) |
+|        **Segment**         |        **Obb**         |
+|    ![seg](/img/seg.png)    |  ![obb](/img/obb.png)  |
 
-![detect-demo!](https://raw.githubusercontent.com/dme-compunet/YoloSharp/main/Assets/detect-demo.jpg)
-
-#### Pose:
-
-![pose-demo!](https://raw.githubusercontent.com/dme-compunet/YoloSharp/main/Assets/pose-demo.jpg)
-
-#### Segmentation:
-
-![seg-demo!](https://raw.githubusercontent.com/dme-compunet/YoloSharp/main/Assets/seg-demo.jpg)
 
 # Not Supported:
 
