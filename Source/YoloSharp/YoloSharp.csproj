@@ -18,7 +18,17 @@
 		<AssemblyName>YoloSharp.Gpu</AssemblyName>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'GpuRelease'">
+	<PropertyGroup Condition="'$(Configuration)' == 'GpuLinuxRelease'">
+		<PackageId>YoloSharp.Gpu.Linux</PackageId>
+		<AssemblyName>YoloSharp.Gpu.Linux</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'GpuWindowsRelease'">
+		<PackageId>YoloSharp.Gpu.Windows</PackageId>
+		<AssemblyName>YoloSharp.Gpu.Windows</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'GpuRelease' OR '$(Configuration)' == 'GpuLinuxRelease' OR '$(Configuration)' == 'GpuWindowsRelease'">
 		<Optimize>true</Optimize>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Use YOLO11 in real-time for object detection tasks, with edge performance, powered by ONNX-Runtime.</Description>
@@ -41,8 +51,10 @@
 		<PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.6" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
-		<PackageReference Condition="'$(Configuration)' != 'GpuRelease'" Include="Microsoft.ML.OnnxRuntime" Version="1.22.0" />
+		<PackageReference Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'Debug'" Include="Microsoft.ML.OnnxRuntime" Version="1.22.0" />
 		<PackageReference Condition="'$(Configuration)' == 'GpuRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu" Version="1.22.0" />
+		<PackageReference Condition="'$(Configuration)' == 'GpuLinuxRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu.Linux" Version="1.22.0" />
+		<PackageReference Condition="'$(Configuration)' == 'GpuWindowsRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu.Windows" Version="1.22.0" />
 	</ItemGroup>
 
 </Project>
