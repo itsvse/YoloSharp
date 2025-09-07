@@ -4,7 +4,7 @@ public class YoloPredictorOptions
 {
     public static YoloPredictorOptions Default { get; } = new();
 
-#if GPURELEASE
+#if GPURELEASE || GPULINUXRELEASE || GPUWINDOWSRELEASE
     public bool UseCuda { get; init; } = true;
 #else 
     public bool UseCuda { get; init; }
