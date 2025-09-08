@@ -6,26 +6,28 @@
 		<Nullable>enable</Nullable>
 		<RootNamespace>Compunet.YoloSharp</RootNamespace>
 		<IsAotCompatible>true</IsAotCompatible>
+		<BasePackageId>YoloSharp</BasePackageId>
+		<BaseAssemblyName>YoloSharp</BaseAssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<PackageId>YoloSharp</PackageId>
-		<AssemblyName>YoloSharp</AssemblyName>
+		<PackageId>$(BasePackageId)</PackageId>
+		<AssemblyName>$(BaseAssemblyName)</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'GpuRelease'">
-		<PackageId>YoloSharp.Gpu</PackageId>
-		<AssemblyName>YoloSharp.Gpu</AssemblyName>
+		<PackageId>$(BasePackageId).Gpu</PackageId>
+		<AssemblyName>$(BaseAssemblyName).Gpu</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'GpuLinuxRelease'">
-		<PackageId>YoloSharp.Gpu.Linux</PackageId>
-		<AssemblyName>YoloSharp.Gpu.Linux</AssemblyName>
+		<PackageId>$(BasePackageId).Gpu.Linux</PackageId>
+		<AssemblyName>$(BaseAssemblyName).Gpu.Linux</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'GpuWindowsRelease'">
-		<PackageId>YoloSharp.Gpu.Windows</PackageId>
-		<AssemblyName>YoloSharp.Gpu.Windows</AssemblyName>
+		<PackageId>$(BasePackageId).Gpu.Windows</PackageId>
+		<AssemblyName>$(BaseAssemblyName).Gpu.Windows</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'GpuRelease' OR '$(Configuration)' == 'GpuLinuxRelease' OR '$(Configuration)' == 'GpuWindowsRelease'">
