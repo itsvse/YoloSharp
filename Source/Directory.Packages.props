@@ -1,17 +1,18 @@
 <Project>
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-		 <OnnxRuntimeVersion>1.22.0</OnnxRuntimeVersion>
+        <OnnxRuntimePackage>Microsoft.ML.OnnxRuntime</OnnxRuntimePackage>
+        <OnnxRuntimeVersion>1.22.0</OnnxRuntimeVersion>
     </PropertyGroup>
     <ItemGroup>
         <PackageVersion Include="Clipper2" Version="1.5.4" />
         <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.10" />
         <PackageVersion Include="SixLabors.ImageSharp.Drawing" Version="2.1.6" />
         <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
-        <PackageVersion Include="Microsoft.ML.OnnxRuntime" Version="$(OnnxRuntimeVersion)" />
-        <PackageVersion Include="Microsoft.ML.OnnxRuntime.Gpu" Version="$(OnnxRuntimeVersion)" />
-        <PackageVersion Include="Microsoft.ML.OnnxRuntime.Gpu.Linux" Version="$(OnnxRuntimeVersion)" />
-        <PackageVersion Include="Microsoft.ML.OnnxRuntime.Gpu.Windows" Version="$(OnnxRuntimeVersion)" />
+        <PackageVersion Include="$(OnnxRuntimePackage)" Version="$(OnnxRuntimeVersion)" />
+        <PackageVersion Include="$(OnnxRuntimePackage).Gpu" Version="$(OnnxRuntimeVersion)" />
+        <PackageVersion Include="$(OnnxRuntimePackage).Gpu.Linux" Version="$(OnnxRuntimeVersion)" />
+        <PackageVersion Include="$(OnnxRuntimePackage).Gpu.Windows" Version="$(OnnxRuntimeVersion)" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageVersion Include="xunit" Version="2.9.3" />
         <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.1">
