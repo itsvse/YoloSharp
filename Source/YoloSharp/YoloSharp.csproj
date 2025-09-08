@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -20,17 +20,12 @@
 		<AssemblyName>$(BaseAssemblyName).Gpu</AssemblyName>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'GpuLinuxRelease'">
-		<PackageId>$(BasePackageId).Gpu.Linux</PackageId>
-		<AssemblyName>$(BaseAssemblyName).Gpu.Linux</AssemblyName>
+	<PropertyGroup Condition="'$(Configuration)' == 'CoreRelease'">
+		<PackageId>$(BasePackageId).Core</PackageId>
+		<AssemblyName>$(BaseAssemblyName).Core</AssemblyName>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'GpuWindowsRelease'">
-		<PackageId>$(BasePackageId).Gpu.Windows</PackageId>
-		<AssemblyName>$(BaseAssemblyName).Gpu.Windows</AssemblyName>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'GpuRelease' OR '$(Configuration)' == 'GpuLinuxRelease' OR '$(Configuration)' == 'GpuWindowsRelease'">
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'GpuRelease' OR '$(Configuration)' == 'CoreRelease'">
 		<Optimize>true</Optimize>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Use YOLO11 in real-time for object detection tasks, with edge performance, powered by ONNX-Runtime.</Description>
@@ -48,15 +43,26 @@
 		<None Include="..\..\README.md" Pack="True" PackagePath="" Visible="False" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'CoreRelease' OR '$(Configuration)' == 'Debug'">
 		<PackageReference Include="Clipper2" />
 		<PackageReference Include="SixLabors.ImageSharp" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-		<PackageReference Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'Debug'" Include="Microsoft.ML.OnnxRuntime" />
-		<PackageReference Condition="'$(Configuration)' == 'GpuRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu" />
-		<PackageReference Condition="'$(Configuration)' == 'GpuLinuxRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu.Linux" />
-		<PackageReference Condition="'$(Configuration)' == 'GpuWindowsRelease'" Include="Microsoft.ML.OnnxRuntime.Gpu.Windows" />
+		<PackageReference Include="Microsoft.ML.OnnxRuntime.Managed" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="Microsoft.ML.OnnxRuntime" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+		<PackageReference Include="$(BasePackageId).Core" />
+		<PackageReference Include="Microsoft.ML.OnnxRuntime" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'GpuRelease'">
+		<PackageReference Include="$(BasePackageId).Core" />
+		<PackageReference  Include="Microsoft.ML.OnnxRuntime.Gpu" />
 	</ItemGroup>
 
 </Project>
